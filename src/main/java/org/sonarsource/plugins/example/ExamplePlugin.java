@@ -37,6 +37,11 @@ import org.sonarsource.plugins.example.settings.FooLanguageProperties;
 import org.sonarsource.plugins.example.settings.HelloWorldProperties;
 import org.sonarsource.plugins.example.settings.SayHelloFromScanner;
 import org.sonarsource.plugins.example.web.MyPluginPageDefinition;
+import org.sonarsource.plugins.example.measures.ComputeCustomCoverage;
+import org.sonarsource.plugins.example.measures.ComputeCustomNewCoverage;
+import org.sonarsource.plugins.example.measures.ComputeCustomTestSuccess;
+import org.sonarsource.plugins.example.measures.CustomCoverageMetrics;
+
 
 /**
  * This class is the entry point for all extensions. It is referenced in pom.xml.
@@ -55,7 +60,16 @@ public class ExamplePlugin implements Plugin {
 
     // tutorial on measures
     context
-      .addExtensions(ExampleMetrics.class, SetSizeOnFilesSensor.class, ComputeSizeAverage.class, ComputeSizeRating.class);
+      .addExtensions(
+        ExampleMetrics.class, 
+        SetSizeOnFilesSensor.class, 
+        ComputeSizeAverage.class, 
+        ComputeSizeRating.class, 
+        CustomCoverageMetrics.class,
+        ComputeCustomTestSuccess.class,
+        ComputeCustomCoverage.class,
+        ComputeCustomNewCoverage.class
+      );
 
     // tutorial on rules
     context.addExtensions(JavaRulesDefinition.class, CreateIssuesOnJavaFilesSensor.class);
