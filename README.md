@@ -53,7 +53,7 @@ This plugin registers 4 extension pages in the SonarQube web app. They demonstra
 This example plugin uses [Webpack](https://webpack.js.org/) for building the final JavaScript. Whatever build system you choose to use, the final result *MUST* adhere to the following rules:
 
 * 1 entry file *per extension page*.
-* The name of each entry file must correspond to the `page_id` of the registered page (see `src/main/java/org/sonarsource/plugins/example/web/MyPluginPageDefinition.java` and compare with the entry points in `conf/webpack/webpack.config.js`).
+* The name of each entry file must correspond to the `page_id` of the registered page (see `src/main/java/org/sonarsource/plugins/auditpage/web/MyPluginPageDefinition.java` and compare with the entry points in `conf/webpack/webpack.config.js`).
 * Each entry file must be located in the resulting JAR's `static/` folder.
 
 The building process should be included in your full packaging process. In this example plugin, `mvn package` will call `npm run build` prior to finalizing the JAR package.
@@ -66,7 +66,7 @@ This project uses [Jest](https://jestjs.io/) for testing. Running `npm test` wil
 
 It is recommended you check out the sources in `src/main/js/` directly. The code is well-commented and provides real-world examples of how to interact with SonarQube.
 
-The pages are registered in `src/main/java/org/sonarsource/plugins/example/web/MyPluginPageDefinition.java`, and their respective front-end source code is located in `src/main/js/`. These examples use different stacks to demonstrate different possibilities:
+The pages are registered in `src/main/java/org/sonarsource/plugins/auditpage/web/MyPluginPageDefinition.java`, and their respective front-end source code is located in `src/main/js/`. These examples use different stacks to demonstrate different possibilities:
 
 * React JS examples (recommended, SonarQube uses React 16):
   * `src/main/js/portfolio_page/`
@@ -86,4 +86,4 @@ The included pages contain several examples:
   Check `src/main/js/common/api.js` for some examples.
 
 * **Localization (`window.t()` and `window.tp()`)**  
-  Localizable UI strings are defined in `src/main/resources/org/sonar/l10n/example/`. They are loaded at startup time and can used by the global `t()` and `tp()` functions. See `src/main/js/admin_page/components/InstanceStatisticsApp.js` and `src/main/js/portfolio_page/components/VersionsMeasuresHistoryApp.js` for some examples. 
+  Localizable UI strings are defined in `src/main/resources/org/sonar/l10n/auditpage/`. They are loaded at startup time and can used by the global `t()` and `tp()` functions. See `src/main/js/admin_page/components/InstanceStatisticsApp.js` and `src/main/js/portfolio_page/components/VersionsMeasuresHistoryApp.js` for some examples. 

@@ -3,12 +3,12 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.sonarsource.plugins.example</groupId>
-  <artifactId>sonar-example-plugin</artifactId>
+  <artifactId>auditpage-plugin</artifactId>
   <packaging>sonar-plugin</packaging>
   <version>10.0.0</version>
 
-  <name>Example Plugin for SonarQube 10.x</name>
-  <description>Example of Plugin for SonarQube: Foo Language, FooLint, Custom Metrics and MeasureComputers</description>
+  <name>Audit page plugin for SonarQube 10.x</name>
+  <description>Audit page plugin for SonarQube 10.x</description>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -56,7 +56,7 @@
         <version>1.23.0.740</version>
         <extensions>true</extensions>
         <configuration>
-          <pluginKey>example</pluginKey>
+          <pluginKey>auditpage</pluginKey>
           <pluginClass>org.sonarsource.plugins.example.ExamplePlugin</pluginClass>
           <!-- Optional, only if you are sure to support older versions of the plugin API than the one you are compiling against -->
           <pluginApiMinVersion>9.9</pluginApiMinVersion>
