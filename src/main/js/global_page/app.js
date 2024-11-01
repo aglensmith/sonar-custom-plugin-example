@@ -19,32 +19,25 @@
 let el, stylesTag;
 
 function init() {
+  // sample code for inner SonarQube page
   el.innerHTML = `
 <div class="page page-limited example-global_page">
-  <button class="button button-red" id="example-global_page--button">Do not click me</button>
+  <p><a href="https://sonarsource.com" target="_blank">My Custom Link 1</a></p>
+  <p><a href="https://google.com" target="_blank">My Custom Link 2</a></p>
 </div>
 `;
-  document
-    .getElementById("example-global_page--button")
-    .addEventListener("click", handleButtonClick);
-}
-
-function handleButtonClick() {
-  alert("Told you so");
 }
 
 export function start(element) {
-  el = element;
-  init();
+  // this code will launch the link directly from the click in the menu
+  window.open('https://sonarsource.com');
+  window.history.back(); // to avoid this opening a dummy empty page, go back to where the user just was
+
+  // uncomment these lines if you want to navigate to a page INSIDE SonarQube containing your links
+  //el = element;
+  //init();
 }
 
 export function stop() {
   // Remove any event listeners we still have.
-  document
-    .getElementById("example-global_page--button")
-    .removeEventListener("click", handleButtonClick);
-
-  // The node will get removed completely by SonarQube anyway, but we can still
-  // clean it up.
-  el.innerHTML = "";
 }
