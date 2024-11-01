@@ -20,6 +20,159 @@
 // Exposes helpers for managing API requests.
 import { getJSON } from "sonar-request";
 
+let auditLogs = 
+function last24 () {
+  return (new Date(new Date().getTime()-(24 * 60 * 60 * 1000))).toISOString();
+}
+
+function now() {
+  return new Date().toISOString();
+}
+
+export function getAuditLogs() {
+
+  return [
+        {
+            "userLogin": "System",
+            "newValue": {
+                "pluginUuid": "7c3917ef-3fee-4260-bd15-c7a047938e77",
+                "kee": "auditpage",
+                "type": "EXTERNAL"
+            },
+            "createdAt": "2024-10-31T12:27:12-0500",
+            "userUuid": "-",
+            "userTriggered": false,
+            "category": "PLUGIN",
+            "operation": "ADD"
+        },
+        {
+            "userLogin": "System",
+            "newValue": {
+                "pluginUuid": "7c3917ef-3fee-4260-bd15-c7a047938e77",
+                "kee": "auditpage",
+                "type": "EXTERNAL"
+            },
+            "createdAt": "2024-10-31T12:37:53-0500",
+            "userUuid": "-",
+            "userTriggered": false,
+            "category": "PLUGIN",
+            "operation": "UPDATE"
+        },
+        {
+            "userLogin": "System",
+            "newValue": {
+                "pluginUuid": "7c3917ef-3fee-4260-bd15-c7a047938e77",
+                "kee": "auditpage",
+                "type": "EXTERNAL"
+            },
+            "createdAt": "2024-10-31T12:41:16-0500",
+            "userUuid": "-",
+            "userTriggered": false,
+            "category": "PLUGIN",
+            "operation": "UPDATE"
+        },
+        {
+            "userLogin": "System",
+            "newValue": {
+                "pluginUuid": "7c3917ef-3fee-4260-bd15-c7a047938e77",
+                "kee": "auditpage",
+                "type": "EXTERNAL"
+            },
+            "createdAt": "2024-10-31T12:46:53-0500",
+            "userUuid": "-",
+            "userTriggered": false,
+            "category": "PLUGIN",
+            "operation": "UPDATE"
+        },
+        {
+            "userLogin": "System",
+            "newValue": {
+                "pluginUuid": "7c3917ef-3fee-4260-bd15-c7a047938e77",
+                "kee": "auditpage",
+                "type": "EXTERNAL"
+            },
+            "createdAt": "2024-10-31T14:40:38-0500",
+            "userUuid": "-",
+            "userTriggered": false,
+            "category": "PLUGIN",
+            "operation": "UPDATE"
+        },
+        {
+            "userLogin": "System",
+            "newValue": {
+                "pluginUuid": "7c3917ef-3fee-4260-bd15-c7a047938e77",
+                "kee": "auditpage",
+                "type": "EXTERNAL"
+            },
+            "createdAt": "2024-10-31T14:44:25-0500",
+            "userUuid": "-",
+            "userTriggered": false,
+            "category": "PLUGIN",
+            "operation": "UPDATE"
+        },
+        {
+            "userLogin": "System",
+            "newValue": {
+                "pluginUuid": "7c3917ef-3fee-4260-bd15-c7a047938e77",
+                "kee": "auditpage",
+                "type": "EXTERNAL"
+            },
+            "createdAt": "2024-10-31T15:24:04-0500",
+            "userUuid": "-",
+            "userTriggered": false,
+            "category": "PLUGIN",
+            "operation": "UPDATE"
+        },
+        {
+            "userLogin": "System",
+            "newValue": {
+                "pluginUuid": "7c3917ef-3fee-4260-bd15-c7a047938e77",
+                "kee": "auditpage",
+                "type": "EXTERNAL"
+            },
+            "createdAt": "2024-10-31T16:00:42-0500",
+            "userUuid": "-",
+            "userTriggered": false,
+            "category": "PLUGIN",
+            "operation": "UPDATE"
+        },
+        {
+            "userLogin": "System",
+            "newValue": {
+                "pluginUuid": "7c3917ef-3fee-4260-bd15-c7a047938e77",
+                "kee": "auditpage",
+                "type": "EXTERNAL"
+            },
+            "createdAt": "2024-10-31T16:04:04-0500",
+            "userUuid": "-",
+            "userTriggered": false,
+            "category": "PLUGIN",
+            "operation": "UPDATE"
+        },
+        {
+            "userLogin": "System",
+            "newValue": {
+                "pluginUuid": "7c3917ef-3fee-4260-bd15-c7a047938e77",
+                "kee": "auditpage",
+                "type": "EXTERNAL"
+            },
+            "createdAt": "2024-10-31T16:11:19-0500",
+            "userUuid": "-",
+            "userTriggered": false,
+            "category": "PLUGIN",
+            "operation": "UPDATE"
+        }
+    ]
+
+  let from = last24();
+  let to = now()
+  let url = '/api/audit_logs/download?from=' + from + '&to=' + to;
+  
+  // return window.SonarRequest.getJSON(url).then(function(response) {
+  //   return response.audit_logs;
+  // });
+}
+
 export function findQualityProfilesStatistics(project) {
   return getJSON("/api/qualityprofiles/search").then(function(response) {
     return response.profiles.length;

@@ -16,36 +16,28 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+
+
 import React from "react";
 import {
-  findIssuesStatistics,
-  findProjects,
-  findQualityProfilesStatistics,
-  findQualityQatesStatistics
+  getAuditLogs
 } from "../../common/api";
+
+import {Table, Table, TableRowInteractive} from '../../design-system/sonar-aligned/components/Table'
 
 export default class InstanceStatisticsApp extends React.PureComponent {
   state = {
     loading: true,
-    numberOfQualityProfiles: "",
-    numberOfQualityGates: "",
-    numberOfIssues: "",
-    numberOfProjects: ""
+    auditLogs: []
   };
 
   componentDidMount() {
     Promise.all([
-      findQualityProfilesStatistics(),
-      findQualityQatesStatistics(),
-      findIssuesStatistics(),
-      findProjects()
-    ]).then(([numberOfQualityProfiles, numberOfQualityGates, numberOfIssues, numberOfProjects]) => {
+      getAuditLogs()
+
+    ]).then(([auditLogs]) => {
       this.setState({
-        loading: false,
-        numberOfQualityProfiles,
-        numberOfQualityGates,
-        numberOfIssues,
-        numberOfProjects
+        auditLogs
       });
     });
   }
@@ -66,36 +58,9 @@ export default class InstanceStatisticsApp extends React.PureComponent {
             <tr>
               <td className="code-name-cell">
                 {window.tp(
-                  "example.admin_page.we_have_x_y",
-                  this.state.numberOfQualityProfiles,
-                  window.t("example.admin_page.quality_profiles")
-                )}
-              </td>
-            </tr>
-            <tr>
-              <td className="code-name-cell">
-                {window.tp(
-                  "example.admin_page.we_have_x_y",
-                  this.state.numberOfQualityGates,
-                  window.t("example.admin_page.quality_gates")
-                )}
-              </td>
-            </tr>
-            <tr>
-              <td className="code-name-cell">
-                {window.tp(
-                  "example.admin_page.we_have_x_y",
-                  this.state.numberOfIssues,
-                  window.t("example.admin_page.issues")
-                )}
-              </td>
-            </tr>
-            <tr>
-              <td className="code-name-cell">
-                {window.tp(
-                  "example.admin_page.we_have_x_y",
-                  this.state.numberOfProjects,
-                  window.t("example.admin_page.projects")
+                  "test",
+                  this.state.auditLogs.length,
+                  "test"
                 )}
               </td>
             </tr>
